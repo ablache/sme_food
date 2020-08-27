@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('dashboard', 'DashboardController@index')->name('dashboard');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::post('logout', 'LoginController@logout')->name('logout');
