@@ -9,6 +9,40 @@
         <i class="fas fa-tachometer-alt mr-2"></i> Dashboard
       </a>
     </li>
+
+    <li class="c-sidebar-nav-title">Products</li>
+    <li class="c-sidebar-nav-item">
+      <a class="c-sidebar-nav-link" href="#">
+        <i class="fas fa-utensils mr-2"></i> Types
+      </a>
+    </li>
+    <li class="c-sidebar-nav-item">
+      <a class="c-sidebar-nav-link" href="#">
+        <i class="fas fa-drumstick-bite mr-2"></i> Dishes
+      </a>
+    </li>
+
+    <li class="c-sidebar-nav-title">Expense Management</li>
+    <li class="c-sidebar-nav-item">
+      <a class="c-sidebar-nav-link" href="#">
+        <i class="fas fa-dollar-sign mr-2"></i> Expenses
+      </a>
+    </li>
+
+    <li class="c-sidebar-nav-title">CRM</li>
+    <li class="c-sidebar-nav-item">
+      <a class="c-sidebar-nav-link" href="#">
+        <i class="fas fa-user-friends mr-2"></i> Customers
+      </a>
+    </li>
+
+    <li class="c-sidebar-nav-title">Order Management</li>
+    <li class="c-sidebar-nav-item">
+      <a class="c-sidebar-nav-link" href="#">
+        <i class="fas fa-shopping-cart mr-2"></i> Orders
+      </a>
+    </li>
+
   </ul>
 
 </div>
