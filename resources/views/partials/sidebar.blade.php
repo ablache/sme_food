@@ -10,6 +10,13 @@
       </a>
     </li>
 
+    <li class="c-sidebar-nav-title">Order Management</li>
+    <li class="c-sidebar-nav-item">
+      <a class="c-sidebar-nav-link" href="#">
+        <i class="fas fa-shopping-cart mr-2"></i> Orders
+      </a>
+    </li>
+
     <li class="c-sidebar-nav-title">Products</li>
     <li class="c-sidebar-nav-item">
       <a class="c-sidebar-nav-link" href="#">
@@ -18,7 +25,7 @@
     </li>
     <li class="c-sidebar-nav-item">
       <a class="c-sidebar-nav-link" href="#">
-        <i class="fas fa-drumstick-bite mr-2"></i> Dishes
+        <i class="fas fa-pepper-hot mr-2"></i> Dishes
       </a>
     </li>
 
@@ -28,18 +35,16 @@
         <i class="fas fa-dollar-sign mr-2"></i> Expenses
       </a>
     </li>
+    <li class="c-sidebar-nav-item">
+      <a class="c-sidebar-nav-link" href="#">
+        <i class="fas fa-chart-line mr-2"></i> Tracking
+      </a>
+    </li>
 
     <li class="c-sidebar-nav-title">CRM</li>
     <li class="c-sidebar-nav-item">
       <a class="c-sidebar-nav-link" href="#">
         <i class="fas fa-user-friends mr-2"></i> Customers
-      </a>
-    </li>
-
-    <li class="c-sidebar-nav-title">Order Management</li>
-    <li class="c-sidebar-nav-item">
-      <a class="c-sidebar-nav-link" href="#">
-        <i class="fas fa-shopping-cart mr-2"></i> Orders
       </a>
     </li>
 

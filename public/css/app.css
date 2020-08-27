@@ -25676,3 +25676,9 @@ body {
   }
 }
 
+.c-sidebar-nav-link:hover,
+.c-sidebar-nav-dropdown-toggle:hover {
+  color: #fff;
+  background: #eb7d46 !important;
+}
+

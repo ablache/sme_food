@@ -1,3 +1,8 @@
 @import '../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome';
 @import '../../node_modules/@fortawesome/fontawesome-free/scss/solid';
 @import '../../node_modules/@coreui/coreui/scss/coreui.scss';
+
+.c-sidebar-nav-link:hover {
+  color: #fff;
+  background: #eb7d46 !important;
+}
