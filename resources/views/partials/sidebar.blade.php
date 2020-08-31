@@ -48,7 +48,7 @@
 
     <li class="c-sidebar-nav-title">CRM</li>
     <li class="c-sidebar-nav-item">
-      <a class="c-sidebar-nav-link" href="#">
+      <a class="c-sidebar-nav-link" href="{{ route('customers') }}">
         <i class="fas fa-user-friends mr-2"></i> Customers
       </a>
     </li>

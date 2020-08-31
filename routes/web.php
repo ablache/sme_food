@@ -26,5 +26,9 @@ Route::group(['middleware' => 'auth'], function() {
   Route::get('expenses/add', 'ExpenseController@create')->name('expenses.add');
   Route::post('expenses/add', 'ExpenseController@store');
 
+  Route::get('customers', 'CustomerController@index')->name('customers');
+  Route::get('customers/add', 'CustomerController@create')->name('customers.add');
+  Route::post('customers/add', 'CustomerController@store');
+
   Route::post('logout', 'LoginController@logout')->name('logout');
 });
