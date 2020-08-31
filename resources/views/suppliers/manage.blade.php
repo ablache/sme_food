@@ -18,6 +18,7 @@
           <tr>
             <th>#</th>
             <th>Name</th>
+            <th>Contact</th>
             <th>Address</th>
             <th>Controls</th>
           </tr>
@@ -27,6 +28,7 @@
             <tr>
               <td>{{ $supplier->id }}</td>
               <td>{{ $supplier->name }}</td>
+              <td>{{ $supplier->contact }}</td>
               <td>{{ $supplier->address }}</td>
               <td></td>
             </tr>

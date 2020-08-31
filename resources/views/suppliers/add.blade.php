@@ -18,8 +18,12 @@
                   {!! Form::text('name', null, ['class' => 'form-control', 'id' => 'name', 'placeholder' => 'Name']) !!}
                 </div>
                 <div class="form-group">
+                  <label for="contact">Contact</label>
+                  {!! Form::text('contact', null, ['class' => 'form-control', 'id' => 'contact', 'placeholder' => 'Contact']) !!}
+                </div>
+                <div class="form-group">
                   <label for="in">Address</label>
-                  {!! Form::textarea('address', null, ['class' => 'form-control', 'id' => 'in', 'placeholder' => 'Address']) !!}
+                  {!! Form::textarea('address', null, ['class' => 'form-control', 'id' => 'address', 'placeholder' => 'Address']) !!}
                 </div>
                 @include('partials.errors')
                 {!! Form::submit('Save', ['class' => 'btn btn-success']) !!}
