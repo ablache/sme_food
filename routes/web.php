@@ -30,5 +30,9 @@ Route::group(['middleware' => 'auth'], function() {
   Route::get('customers/add', 'CustomerController@create')->name('customers.add');
   Route::post('customers/add', 'CustomerController@store');
 
+  Route::get('product-types', 'ProductTypeController@index')->name('product-types');
+  Route::get('product-types/add', 'ProductTypeController@create')->name('product-types.add');
+  Route::post('product-types/add', 'ProductTypeController@store');
+
   Route::post('logout', 'LoginController@logout')->name('logout');
 });

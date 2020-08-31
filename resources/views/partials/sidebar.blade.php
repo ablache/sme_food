@@ -19,13 +19,18 @@
 
     <li class="c-sidebar-nav-title">Products</li>
     <li class="c-sidebar-nav-item">
-      <a class="c-sidebar-nav-link" href="#">
-        <i class="fas fa-utensils mr-2"></i> Types
+      <a class="c-sidebar-nav-link" href="{{ route('product-types') }}">
+        <i class="fas fa-utensils mr-2"></i> Product Types
       </a>
     </li>
     <li class="c-sidebar-nav-item">
       <a class="c-sidebar-nav-link" href="#">
-        <i class="fas fa-pepper-hot mr-2"></i> Dishes
+        <i class="fas fa-pepper-hot mr-2"></i> Product Preferences
+      </a>
+    </li>
+    <li class="c-sidebar-nav-item">
+      <a class="c-sidebar-nav-link" href="#">
+        <i class="fas fa-pizza-slice mr-2"></i> Products
       </a>
     </li>
 
