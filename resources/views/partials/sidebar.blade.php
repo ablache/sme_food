@@ -32,6 +32,11 @@
     <li class="c-sidebar-nav-title">Expense Management</li>
     <li class="c-sidebar-nav-item">
       <a class="c-sidebar-nav-link" href="#">
+        <i class="fas fa-truck mr-2"></i> Suppliers
+      </a>
+    </li>
+    <li class="c-sidebar-nav-item">
+      <a class="c-sidebar-nav-link" href="#">
         <i class="fas fa-dollar-sign mr-2"></i> Expenses
       </a>
     </li>
