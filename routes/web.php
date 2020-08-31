@@ -22,5 +22,9 @@ Route::group(['middleware' => 'auth'], function() {
   Route::get('suppliers/add', 'SupplierController@create')->name('suppliers.add');
   Route::post('suppliers/add', 'SupplierController@store');
 
+  Route::get('expenses', 'ExpenseController@index')->name('expenses');
+  Route::get('expenses/add', 'ExpenseController@create')->name('expenses.add');
+  Route::post('expenses/add', 'ExpenseController@store');
+
   Route::post('logout', 'LoginController@logout')->name('logout');
 });

@@ -24,6 +24,6 @@ class SupplierController extends Controller
   public function store(SupplierRequest $request) {
     $supplier = Supplier::create($request->validated());
 
-    return redirect()->route('suppliers');
+    return redirect()->route('suppliers')->with(['success' => 'Supplier added successfully']);
   }
 }
