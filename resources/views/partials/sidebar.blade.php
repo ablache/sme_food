@@ -31,7 +31,7 @@
 
     <li class="c-sidebar-nav-title">Expense Management</li>
     <li class="c-sidebar-nav-item">
-      <a class="c-sidebar-nav-link" href="#">
+      <a class="c-sidebar-nav-link" href="{{ route('suppliers') }}">
         <i class="fas fa-truck mr-2"></i> Suppliers
       </a>
     </li>

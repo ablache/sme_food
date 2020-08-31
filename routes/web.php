@@ -18,5 +18,9 @@ Route::post('login', 'LoginController@postLogin');
 Route::group(['middleware' => 'auth'], function() {
   Route::get('dashboard', 'DashboardController@index')->name('dashboard');
 
+  Route::get('suppliers', 'SupplierController@index')->name('suppliers');
+  Route::get('suppliers/add', 'SupplierController@create')->name('suppliers.add');
+  Route::post('suppliers/add', 'SupplierController@store');
+
   Route::post('logout', 'LoginController@logout')->name('logout');
 });
