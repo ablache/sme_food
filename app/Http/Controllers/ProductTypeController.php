@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductTypeRequest;
-use App\ProductType;
+use App\Type;
 
 class ProductTypeController extends Controller
 {
   public function index() {
     $title = 'Product Types';
-    $productTypes = ProductType::all();
+    $productTypes = Type::all();
 
     return view('product-types.manage', compact('title', 'productTypes'));
   }
@@ -22,7 +22,7 @@ class ProductTypeController extends Controller
   }
 
   public function store(ProductTypeRequest $request) {
-    $productType = ProductType::create($request->validated());
+    $productType = Type::create($request->validated());
 
     return redirect()->route('product-types')->with(['success' => 'Product type added successfully']);
   }
