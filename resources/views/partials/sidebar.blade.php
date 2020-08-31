@@ -24,7 +24,7 @@
       </a>
     </li>
     <li class="c-sidebar-nav-item">
-      <a class="c-sidebar-nav-link" href="#">
+      <a class="c-sidebar-nav-link" href="{{ route('product-preferences') }}">
         <i class="fas fa-pepper-hot mr-2"></i> Product Preferences
       </a>
     </li>
