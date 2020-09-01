@@ -8,11 +8,11 @@ class Product extends Model
 {
   protected $fillable = ['name', 'type_id', 'price', 'image'];
 
-  public function productType() {
+  public function type() {
     return $this->belongsTo(Type::class);
   }
 
-  public function productPreferences() {
+  public function preferences() {
     return $this->belongsToMany(Preference::class);
   }
 }

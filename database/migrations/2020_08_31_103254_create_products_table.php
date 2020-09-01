@@ -18,7 +18,7 @@ class CreateProductsTable extends Migration
       $table->bigInteger('type_id')->unsigned();
       $table->string('name');
       $table->double('price');
-      $table->string('image');
+      $table->string('image')->nullable();
       $table->enum('status', ['unavailable', 'available'])->default('available');
       $table->timestamps();
 
