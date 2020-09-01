@@ -29,7 +29,7 @@
       </a>
     </li>
     <li class="c-sidebar-nav-item">
-      <a class="c-sidebar-nav-link" href="#">
+      <a class="c-sidebar-nav-link" href="{{ route('products') }}">
         <i class="fas fa-pizza-slice mr-2"></i> Products
       </a>
     </li>
