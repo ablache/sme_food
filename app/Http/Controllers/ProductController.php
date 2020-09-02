@@ -20,6 +20,13 @@ class ProductController extends Controller
     return view('products.manage', compact('title', 'products'));
   }
 
+  public function show($id) {
+    $product = Product::findOrFail($id);
+    $title = 'View Product ' . $product->name;
+
+    return view('products.view', compact('title', 'product'));
+  }
+
   public function create() {
     $title = 'Add Product';
     $types = Type::all();

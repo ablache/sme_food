@@ -39,6 +39,7 @@ Route::group(['middleware' => 'auth'], function() {
   Route::post('product-preferences/add', 'ProductPreferenceController@store');
 
   Route::get('products', 'ProductController@index')->name('products');
+  Route::get('products/{id}', 'ProductController@show')->name('products.view');
   Route::get('products/add', 'ProductController@create')->name('products.add');
   Route::post('products/add', 'ProductController@store');
 

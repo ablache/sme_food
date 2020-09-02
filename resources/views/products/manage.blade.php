@@ -23,7 +23,7 @@
               <div class="card-body">
                 <div class="row">
                   <div class="col-sm-12 text-center">
-                    <a href="#">
+                    <a href="{{ route('products.view', ['id' => $product->id]) }}">
                       @if ($product->image)
                         <img class="img-fluid" src="{{ asset($product->image) }}" alt="{{ $product->name }}">
                       @else
