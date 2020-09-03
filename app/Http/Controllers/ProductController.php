@@ -10,6 +10,7 @@ use App\Preference;
 use Storage;
 use Image;
 use Illuminate\Support\Str;
+use App\Http\Resources\ProductResource;
 
 class ProductController extends Controller
 {
@@ -67,5 +68,17 @@ class ProductController extends Controller
     }
 
     return redirect()->route('products')->with(['success' => 'Product added successfully']);
+  }
+
+  public function search(Request $request) {
+    $request->validate(['keyword' => 'required']);
+    $keyword = $request->keyword;
+
+    $products = Product::where('name', 'LIKE', '%' . $keyword . '%')
+                          ->where('status', 'available')
+                          ->limit(10)
+                          ->get();
+
+    return response()->json(['data' => ProductResource::collection($products)], 200);
   }
 }

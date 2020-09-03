@@ -12,7 +12,7 @@
 
     <li class="c-sidebar-nav-title">Order Management</li>
     <li class="c-sidebar-nav-item">
-      <a class="c-sidebar-nav-link" href="#">
+      <a class="c-sidebar-nav-link" href="{{ route('orders') }}">
         <i class="fas fa-shopping-cart mr-2"></i> Orders
       </a>
     </li>

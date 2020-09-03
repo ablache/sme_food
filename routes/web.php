@@ -29,6 +29,7 @@ Route::group(['middleware' => 'auth'], function() {
   Route::get('customers', 'CustomerController@index')->name('customers');
   Route::get('customers/add', 'CustomerController@create')->name('customers.add');
   Route::post('customers/add', 'CustomerController@store');
+  Route::post('customers/search', 'CustomerController@search')->name('customers.search');
 
   Route::get('product-types', 'ProductTypeController@index')->name('product-types');
   Route::get('product-types/add', 'ProductTypeController@create')->name('product-types.add');
@@ -39,9 +40,16 @@ Route::group(['middleware' => 'auth'], function() {
   Route::post('product-preferences/add', 'ProductPreferenceController@store');
 
   Route::get('products', 'ProductController@index')->name('products');
-  Route::get('products/{id}', 'ProductController@show')->name('products.view');
   Route::get('products/add', 'ProductController@create')->name('products.add');
   Route::post('products/add', 'ProductController@store');
+  Route::post('products/search', 'ProductController@search')->name('products.search');
+  Route::get('products/{id}', 'ProductController@show')->name('products.view');
+
+  Route::get('orders', 'OrderController@index')->name('orders');
+  Route::get('orders/add', 'OrderController@create')->name('orders.add');
+  Route::post('orders/add', 'OrderController@store');
+  Route::get('orders/{id}', 'OrderController@show')->name('orders.view');
+  
 
   Route::post('logout', 'LoginController@logout')->name('logout');
 });

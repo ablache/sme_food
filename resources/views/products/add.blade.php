@@ -33,9 +33,6 @@
                   <label for="preferences">Product Preferences</label>
                   <div class="row">
                     <div class="col-sm-12">
-                      
-
-                      
                       @foreach ($preferences as $p)
                       <div class="custom-control custom-radio custom-control-inline">
                         {!! Form::checkbox('preferences[' . $p->id . ']', true, null, ['class' => 'form-check-input']) !!}
