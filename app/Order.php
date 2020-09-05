@@ -15,11 +15,15 @@ class Order extends Model
     'payment_method',
   ];
 
+  protected $casts = [
+    'deliver_at' => 'datetime',
+  ];
+
   public function customer() {
     return $this->belongsTo(Customer::class);
   }
 
   public function products() {
-    return $this->belongsToMany(Product::class);
+    return $this->belongsToMany(Product::class)->withPivot('quantity');
   }
 }
