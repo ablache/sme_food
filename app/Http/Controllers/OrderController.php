@@ -17,7 +17,14 @@ class OrderController extends Controller
   }
 
   public function show($id) {
+    $title = 'View Order';
+    $order = Order::findOrFail($id);
+    $subTotal = 0;
+    $deliveryStatuses = ['delivered','not delivered','not answering'];
+    $paymentMethods = ['transfer','cash'];
+    $paymentStatuses = ['paid','not paid'];
 
+    return view('orders.view', compact('title', 'order', 'subTotal', 'deliveryStatuses', 'paymentMethods', 'paymentStatuses'));
   }
 
   public function create() {

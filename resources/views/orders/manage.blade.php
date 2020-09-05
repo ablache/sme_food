@@ -20,7 +20,7 @@
             <th>Ordered By</th>
             <th>Deliver At</th>
             <th>Items</th>
-            <th>Sub Total</th>
+            <th>Sub-Total</th>
             <th>Discount</th>
             <th>Payable</th>
             <th>Created At</th>
@@ -58,11 +58,11 @@
                 </ul>
               </td>
               <td>
-                {{ $subTotal }}
+                MVR{{ number_format($subTotal, 2) }}
               </td>
               <td>{{ $order->discount }} %</td>
               <td>
-                {{ $subTotal - ($subTotal * ($order->discount / 100)) }}
+                MVR{{ number_format($subTotal - ($subTotal * ($order->discount / 100))) }}
               </td>
               <td>{{ $order->created_at->format('d M Y H:i') }}</td>
               <td>
