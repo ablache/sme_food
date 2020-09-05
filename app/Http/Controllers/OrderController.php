@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\OrderRequest;
 use App\Order;
+use App\Product;
 
 class OrderController extends Controller
 {
@@ -26,6 +27,21 @@ class OrderController extends Controller
   }
 
   public function store(OrderRequest $request) {
+    $order = Order::create($request->all());
+    $products = $request->products;
+
+    foreach($products as $p) {
+      $product = Product::findOrFail($p['id']);
+      $data['quantity'] = $p['qty'];
+      if(array_key_exists('prefs', $p)) {
+        $data['preferences'] = json_encode($p['prefs']);
+      }
+
+      $order->products()->save($product, $data);
+
+      unset($data);
+    }
+    
     return response()->json(['success' => 'ok'], 200);
   }
 }

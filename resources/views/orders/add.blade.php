@@ -203,6 +203,7 @@ var token = "{{ csrf_token() }}";
 var custSrchUrl = "{{ route('customers.search') }}";
 var prodSrchUrl = "{{ route('products.search') }}";
 var prodAddUrl = "{{ route('orders.add') }}";
+var successUrl = "{{ route('orders') }}";
 
 $(document).ready(function() {
   clearCustomer();
@@ -396,7 +397,7 @@ $(document).ready(function() {
         url: prodAddUrl,
         data: data,
         success: function(response) {
-          console.log('success');
+          location.replace(successUrl);
         },
         error: function(e) {
           var errors = JSON.parse(e.responseText);
