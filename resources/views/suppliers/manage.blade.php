@@ -30,13 +30,17 @@
               <td>{{ $supplier->name }}</td>
               <td>{{ $supplier->contact }}</td>
               <td>{{ $supplier->address }}</td>
-              <td></td>
+              <td width=150>
+                <a href="{{ route('suppliers.edit', ['id' => $supplier->id]) }}" class="btn btn-outline-primary"><span class="fas fa-pen"></span></a>
+                <a href="{{ route('suppliers.delete', ['id' => $supplier->id]) }}" class="del-conf btn btn-outline-primary"><span class="fas fa-trash"></span></a>
+              </td>
             </tr>
           @endforeach
         </tbody>
       </table>
     </div>
   </div>
+  @include('partials.delete-confirm-modal')
 </div>
     
 @endsection

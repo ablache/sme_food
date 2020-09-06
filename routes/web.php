@@ -24,6 +24,9 @@ Route::group(['middleware' => 'auth'], function() {
   Route::get('suppliers', 'SupplierController@index')->name('suppliers');
   Route::get('suppliers/add', 'SupplierController@create')->name('suppliers.add');
   Route::post('suppliers/add', 'SupplierController@store');
+  Route::get('suppliers/edit/{id}', 'SupplierController@edit')->name('suppliers.edit');
+  Route::post('suppliers/edit/{id}', 'SupplierController@update');
+  Route::post('suppliers/delete/{id}', 'SupplierController@destroy')->name('suppliers.delete');
 
   Route::get('expenses', 'ExpenseController@index')->name('expenses');
   Route::get('expenses/add', 'ExpenseController@create')->name('expenses.add');

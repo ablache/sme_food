@@ -30,7 +30,7 @@
               <td>{{ $customer->name }}</td>
               <td>{{ $customer->contact }}</td>
               <td>{{ $customer->address }}</td>
-              <td>
+              <td width=150>
                 <a href="{{ route('customers.edit', ['id' => $customer->id]) }}" class="btn btn-outline-primary"><span class="fas fa-pen"></span></a>
                 <a href="{{ route('customers.delete', ['id' => $customer->id]) }}" class="del-conf btn btn-outline-primary"><span class="fas fa-trash"></span></a>
               </td>
