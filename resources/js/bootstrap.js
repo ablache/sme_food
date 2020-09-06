@@ -28,3 +28,21 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 // });
 
 window.jQuery = window.$ = require('jquery');
+
+$(function(){
+  $('.del-conf').click(function(e){
+    e.preventDefault();
+  
+    var url = $(this).attr('href');
+
+    $('#confirmModalPost').modal('show');
+    var form = $('#confirm-form');
+
+    form.attr('action', url);
+  });
+
+  $('#delete-post').click(function(e){
+    e.preventDefault();
+    $('#confirm-form').submit();
+  });
+});

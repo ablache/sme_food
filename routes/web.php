@@ -33,6 +33,9 @@ Route::group(['middleware' => 'auth'], function() {
   Route::get('customers/add', 'CustomerController@create')->name('customers.add');
   Route::post('customers/add', 'CustomerController@store');
   Route::post('customers/search', 'CustomerController@search')->name('customers.search');
+  Route::get('customers/edit/{id}', 'CustomerController@edit')->name('customers.edit');
+  Route::post('customers/edit/{id}', 'CustomerController@update');
+  Route::post('customers/delete/{id}', 'CustomerController@destroy')->name('customers.delete');
 
   Route::get('product-types', 'ProductTypeController@index')->name('product-types');
   Route::get('product-types/add', 'ProductTypeController@create')->name('product-types.add');

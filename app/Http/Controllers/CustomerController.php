@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\CustomerRequest;
 use App\Customer;
 use App\Http\Resources\CustomerResource;
+use App\Http\Requests\ConfirmRequest;
 
 class CustomerController extends Controller
 {
@@ -39,5 +40,26 @@ class CustomerController extends Controller
                             ->get();
 
     return response()->json(['data' => CustomerResource::collection($customers)], 200);
+  }
+
+  public function edit($id) {
+    $title = 'Edit Customer Details';
+    $model = Customer::findOrFail($id);
+
+    return view('customers.edit', compact('title', 'model'));
+  }
+
+  public function update(CustomerRequest $request, $id) {
+    $customer = Customer::findOrFail($id);
+    $customer->update($request->all());
+
+    return redirect()->route('customers')->with(['success' => 'Customer details updated successfully.']);
+  }
+
+  public function destroy(ConfirmRequest $request, $id) {
+    $customer = Customer::findOrFail($id);
+    $customer->delete();
+
+    return redirect()->route('customers')->with(['success' => 'Customer removed successfully.']);
   }
 }
