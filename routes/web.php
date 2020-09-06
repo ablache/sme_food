@@ -53,6 +53,9 @@ Route::group(['middleware' => 'auth'], function() {
   Route::get('product-preferences', 'ProductPreferenceController@index')->name('product-preferences');
   Route::get('product-preferences/add', 'ProductPreferenceController@create')->name('product-preferences.add');
   Route::post('product-preferences/add', 'ProductPreferenceController@store');
+  Route::get('product-preferences/edit/{id}', 'ProductPreferenceController@edit')->name('product-preferences.edit');
+  Route::post('product-preferences/edit/{id}', 'ProductPreferenceController@update');
+  Route::post('product-preferences/delete/{id}', 'ProductPreferenceController@destroy')->name('product-preferences.delete');
 
   Route::get('products', 'ProductController@index')->name('products');
   Route::get('products/add', 'ProductController@create')->name('products.add');

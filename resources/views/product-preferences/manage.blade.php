@@ -26,13 +26,17 @@
             <tr>
               <td>{{ $productPreference->id }}</td>
               <td>{{ $productPreference->name }}</td>
-              <td></td>
+              <td width=150>
+                <a href="{{ route('product-preferences.edit', ['id' => $productPreference->id]) }}" class="btn btn-outline-primary"><span class="fas fa-pen"></span></a>
+                <a href="{{ route('product-preferences.delete', ['id' => $productPreference->id]) }}" class="del-conf btn btn-outline-primary"><span class="fas fa-trash"></span></a>
+              </td>
             </tr>
           @endforeach
         </tbody>
       </table>
     </div>
   </div>
+  @include('partials.delete-confirm-modal')
 </div>
     
 @endsection
