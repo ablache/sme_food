@@ -334,6 +334,8 @@ $(document).ready(function() {
     $('#customer_srch').val('');
     $('#customer_id').val($(this).attr('rel'));
     selectedCustomer = $(this).attr('rel');
+    $('#customer_list').html('');
+    $('#customer_list').empty();
   });
 
   $('#discount').on('input', function(e) {
