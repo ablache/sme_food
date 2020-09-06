@@ -203,7 +203,7 @@ $(document).ready(function() {
     e.preventDefault();
 
     var psstatus = $(this).attr('rel');
-    msg.html('Are you sure you want to change the payment method to <strong>' + psstatus + '</strong>');
+    msg.html('Are you sure you want to change the payment status to <strong>' + psstatus + '</strong>');
 
     if(!$(this).hasClass('disabled')) { 
       postUpdate(paymentStatusUrl, psstatus);
