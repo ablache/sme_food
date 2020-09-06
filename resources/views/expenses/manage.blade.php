@@ -32,7 +32,10 @@
               <td>MVR {{ number_format($expense->price, 2) }}</td>
               <td>{{ $expense->created_at->format('d M Y h:i') }}</td>
               <td>{{ $expense->supplier()->first()->name }}</td>
-              <td></td>
+              <td width=150>
+                <a href="{{ route('expenses.edit', ['id' => $expense->id]) }}" class="btn btn-outline-primary"><span class="fas fa-pen"></span></a>
+                <a href="{{ route('expenses.delete', ['id' => $expense->id]) }}" class="del-conf btn btn-outline-primary"><span class="fas fa-trash"></span></a>
+              </td>
             </tr>
           @endforeach
         </tbody>
@@ -40,6 +43,7 @@
       {{ $expenses->links() }}
     </div>
   </div>
+  @include('partials.delete-confirm-modal')
 </div>
     
 @endsection

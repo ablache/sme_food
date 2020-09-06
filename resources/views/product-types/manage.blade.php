@@ -26,13 +26,17 @@
             <tr>
               <td>{{ $productType->id }}</td>
               <td>{{ $productType->name }}</td>
-              <td></td>
+              <td width=150>
+                <a href="{{ route('product-types.edit', ['id' => $productType->id]) }}" class="btn btn-outline-primary"><span class="fas fa-pen"></span></a>
+                <a href="{{ route('product-types.delete', ['id' => $productType->id]) }}" class="del-conf btn btn-outline-primary"><span class="fas fa-trash"></span></a>
+              </td>
             </tr>
           @endforeach
         </tbody>
       </table>
     </div>
   </div>
+  @include('partials.delete-confirm-modal')
 </div>
     
 @endsection

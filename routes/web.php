@@ -31,6 +31,9 @@ Route::group(['middleware' => 'auth'], function() {
   Route::get('expenses', 'ExpenseController@index')->name('expenses');
   Route::get('expenses/add', 'ExpenseController@create')->name('expenses.add');
   Route::post('expenses/add', 'ExpenseController@store');
+  Route::get('expenses/edit/{id}', 'ExpenseController@edit')->name('expenses.edit');
+  Route::post('expenses/edit/{id}', 'ExpenseController@update');
+  Route::post('expenses/delete/{id}', 'ExpenseController@destroy')->name('expenses.delete');
 
   Route::get('customers', 'CustomerController@index')->name('customers');
   Route::get('customers/add', 'CustomerController@create')->name('customers.add');
@@ -43,6 +46,9 @@ Route::group(['middleware' => 'auth'], function() {
   Route::get('product-types', 'ProductTypeController@index')->name('product-types');
   Route::get('product-types/add', 'ProductTypeController@create')->name('product-types.add');
   Route::post('product-types/add', 'ProductTypeController@store');
+  Route::get('product-types/edit/{id}', 'ProductTypeController@edit')->name('product-types.edit');
+  Route::post('product-types/edit/{id}', 'ProductTypeController@update');
+  Route::post('product-types/delete/{id}', 'ProductTypeController@destroy')->name('product-types.delete');
 
   Route::get('product-preferences', 'ProductPreferenceController@index')->name('product-preferences');
   Route::get('product-preferences/add', 'ProductPreferenceController@create')->name('product-preferences.add');
