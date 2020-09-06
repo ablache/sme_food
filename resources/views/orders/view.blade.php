@@ -3,7 +3,8 @@
 @section('content')
 
 <div class="fade-in">
-
+  @include('partials.errors')
+  @include('partials.success')
   <div class="row">
     <div class="col-sm-12">
       <h3>{{ $title }}</h3>
@@ -107,7 +108,7 @@
               <span class="float-right">
                 <div class="btn-group" role="group" aria-label="none">
                   @foreach ($deliveryStatuses as $ds)
-                    <button type="button" class="btn btn-{{ ($order->delivery_status == $ds) ? 'success' : 'secondary' }}">{{ ucfirst($ds) }}</button>
+                    <button type="button" rel="{{ $ds }}" class="delivery-btn btn btn-{{ ($order->delivery_status == $ds) ? 'success disabled' : 'secondary' }}">{{ ucfirst($ds) }}</button>
                   @endforeach
                 </div>
               </span>
@@ -142,7 +143,7 @@
               <span class="float-right">
                 <div class="btn-group" role="group" aria-label="none">
                   @foreach ($paymentMethods as $pm)
-                    <button type="button" class="btn btn-{{ ($order->payment_method == $pm) ? 'success' : 'secondary' }}">{{ ucfirst($pm) }}</button>
+                    <button type="button" rel="{{ $pm }}" class="payment-method-btn btn btn-{{ ($order->payment_method == $pm) ? 'success disabled' : 'secondary' }}">{{ ucfirst($pm) }}</button>
                   @endforeach
                 </div>
               </span>
@@ -152,7 +153,7 @@
               <span class="float-right">
                 <div class="btn-group" role="group" aria-label="none">
                   @foreach ($paymentStatuses as $ps)
-                    <button type="button" class="btn btn-{{ ($order->payment_status == $ps) ? 'success' : 'secondary' }}">{{ ucfirst($ps) }}</button>
+                    <button type="button" rel="{{ $ps }}" class="payment-status-btn btn btn-{{ ($order->payment_status == $ps) ? 'success disabled' : 'secondary' }}">{{ ucfirst($ps) }}</button>
                   @endforeach
                 </div>
               </span>
@@ -162,7 +163,65 @@
       </div>
     </div>
   </div>
-
+  @include('partials.confirm-modal')
 </div>
     
+@endsection
+
+@section('scripts')
+<script type="text/javascript">
+var deliveryUrl = "{{ route('orders.delivery', ['id' => $order->id]) }}";
+var paymentMethodUrl = "{{ route('orders.payment.method', ['id' => $order->id]) }}";
+var paymentStatusUrl = "{{ route('orders.payment.status', ['id' => $order->id]) }}";
+
+$(document).ready(function() {
+  var msg = $('#modalMsg');
+
+  $('.delivery-btn').click(function(e) {
+    e.preventDefault();
+
+    var dstatus = $(this).attr('rel');
+
+    msg.html('Are you sure you want to change the delivery status to <strong>' + dstatus + '</strong>');
+    if(!$(this).hasClass('disabled')) {
+      postUpdate(deliveryUrl, dstatus);
+    }
+  });
+
+  $('.payment-method-btn').click(function(e) {
+    e.preventDefault();
+
+    var pmstatus = $(this).attr('rel');
+    msg.html('Are you sure you want to change the payment method to <strong>' + pmstatus + '</strong>');
+
+    if(!$(this).hasClass('disabled')) { 
+      postUpdate(paymentMethodUrl, pmstatus);
+    }
+  });
+
+  $('.payment-status-btn').click(function(e) {
+    e.preventDefault();
+
+    var psstatus = $(this).attr('rel');
+    msg.html('Are you sure you want to change the payment method to <strong>' + psstatus + '</strong>');
+
+    if(!$(this).hasClass('disabled')) { 
+      postUpdate(paymentStatusUrl, psstatus);
+    }
+  });
+
+});
+
+function postUpdate(url, status) {
+  $('#confirmModal').modal('show');
+  $('#confirm-form').attr('action', url);
+  $('#confirm-status').val(status);
+  $('#update-status').click(function(e) {
+    e.preventDefault();
+    
+    $('#confirm-form').submit();
+  });
+}
+
+</script>
 @endsection

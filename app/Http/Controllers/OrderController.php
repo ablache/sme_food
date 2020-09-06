@@ -51,4 +51,28 @@ class OrderController extends Controller
     
     return response()->json(['success' => 'ok'], 200);
   }
+
+  public function delivery(Request $request, $id) {
+    $order = Order::findOrFail($id);
+    $order->delivery_status = $request->status;
+    $order->save();
+
+    return redirect()->route('orders.view', ['id' => $order->id])->with(['success' => 'Delivery status updated successfully.']);
+  }
+
+  public function paymentMethod(Request $request, $id) {
+    $order = Order::findOrFail($id);
+    $order->payment_method = $request->status;
+    $order->save();
+
+    return redirect()->route('orders.view', ['id' => $order->id])->with(['success' => 'Payment method updated successfully.']);
+  }
+
+  public function paymentStatus(Request $request, $id) {
+    $order = Order::findOrFail($id);
+    $order->payment_status = $request->status;
+    $order->save();
+
+    return redirect()->route('orders.view', ['id' => $order->id])->with(['success' => 'Payment status updated successfully.']);
+  }
 }
