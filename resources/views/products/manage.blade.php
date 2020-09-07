@@ -39,7 +39,7 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-sm-12">
+                  <div class="col-sm-12 prod-pref">
                     @if ($product->preferences()->count() > 0)
                       @foreach ($product->preferences()->get() as $pref)
                         <span class="badge badge-secondary">{{ $pref->name }}</span>
@@ -48,6 +48,10 @@
                   </div>
                 </div>
               
+              </div>
+              <div class="card-footer">
+                <a href="{{ route('products.view', ['id' => $product->id]) }}" class="btn btn-outline-primary">View <span class="fas fa-search"></span></a>
+                <a href="{{ route('products.edit', ['id' => $product->id]) }}" class="btn btn-outline-primary">Edit <span class="fas fa-pen"></span></a>
               </div>
             </div>
           </div>

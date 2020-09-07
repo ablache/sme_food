@@ -52,6 +52,9 @@
       </div>
 
     </div>
+    <div class="card-footer">
+      <a href="{{ route('products.edit', ['id' => $product->id]) }}" class="btn btn-outline-primary">Edit <span class="fas fa-pen"></span></a>
+    </div>
   </div>
 </div>
     
