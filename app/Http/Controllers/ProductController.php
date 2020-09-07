@@ -11,6 +11,7 @@ use Storage;
 use Image;
 use Illuminate\Support\Str;
 use App\Http\Resources\ProductResource;
+use App\Http\Requests\ConfirmRequest;
 
 class ProductController extends Controller
 {
@@ -126,5 +127,12 @@ class ProductController extends Controller
     }
 
     return redirect()->route('products')->with(['success' => 'Product updated successfully']);
+  }
+
+  public function destroy(ConfirmRequest $request, $id) {
+    $product = Product::findOrFail($id);
+    $product->delete();
+
+    return redirect()->route('products')->with(['success' => 'Product deleted successfully']);
   }
 }

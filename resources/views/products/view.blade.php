@@ -54,8 +54,10 @@
     </div>
     <div class="card-footer">
       <a href="{{ route('products.edit', ['id' => $product->id]) }}" class="btn btn-outline-primary">Edit <span class="fas fa-pen"></span></a>
+      <a href="{{ route('products.delete', ['id' => $product->id]) }}" class="del-conf btn btn-outline-primary">Delete <span class="fas fa-trash"></span></a>
     </div>
   </div>
+  @include('partials.delete-confirm-modal');
 </div>
     
 @endsection
