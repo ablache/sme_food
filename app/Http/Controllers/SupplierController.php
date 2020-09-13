@@ -11,7 +11,7 @@ class SupplierController extends Controller
 {
   public function index() {
     $title = 'Suppliers';
-    $suppliers = Supplier::all();
+    $suppliers = Supplier::orderBy('name', 'asc')->paginate(10);
 
     return view('suppliers.manage', compact('title', 'suppliers'));
   }

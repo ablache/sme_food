@@ -38,6 +38,7 @@
           @endforeach
         </tbody>
       </table>
+      {{ $suppliers->links() }}
     </div>
   </div>
   @include('partials.delete-confirm-modal')
