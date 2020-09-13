@@ -16,11 +16,12 @@ class CustomerController extends Controller
     $customers = collect();
     $q = '';
 
-    if($request->has('q')) {
+    if($request->has('q') && $request->q != '') {
       $q = $request->q;
       $customers = Customer::where('name', 'LIKE', '%' . $q . '%')
                               ->orWhere('contact', 'LIKE', '%' . $q . '%')
                               ->orWhere('address', 'LIKE', '%' . $q . '%')
+                              ->orderBy('name', 'asc')
                               ->paginate(10);
     }
     else {
