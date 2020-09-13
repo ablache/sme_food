@@ -10,11 +10,25 @@ use App\Http\Requests\ConfirmRequest;
 
 class CustomerController extends Controller
 {
-  public function index() {
+  public function index(Request $request) {
     $title = 'Customers';
-    $customers = Customer::orderBy('name', 'asc')->paginate(10);
 
-    return view('customers.manage', compact('title', 'customers'));
+    $customers = collect();
+    $q = '';
+
+    if($request->has('q')) {
+      $q = $request->q;
+      $customers = Customer::where('name', 'LIKE', '%' . $q . '%')
+                              ->orWhere('contact', 'LIKE', '%' . $q . '%')
+                              ->orWhere('address', 'LIKE', '%' . $q . '%')
+                              ->paginate(10);
+    }
+    else {
+      $customers = Customer::orderBy('name', 'asc')->paginate(10);
+    }
+    
+
+    return view('customers.manage', compact('title', 'customers', 'q'));
   }
 
   public function create() {
@@ -36,6 +50,7 @@ class CustomerController extends Controller
 
     $customers = Customer::where('name', 'LIKE', '%' . $keyword . '%')
                             ->orWhere('contact', 'LIKE', '%' . $keyword . '%')
+                            ->orWhere('address', 'LIKE', '%' . $keyword . '%')
                             ->limit(10)
                             ->get();
 
