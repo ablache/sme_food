@@ -29,7 +29,7 @@ class OrderRequest extends FormRequest
       'discount' => 'required|numeric|min:0|max:100',
       'delivery_status' => 'required|in:delivered, "not delivered", "not answering"',
       'deliver_at' => 'nullable|date',
-      'payment_status' => 'required|in: paid,"not paid"',
+      'payment_status' => 'required|in:paid,"not paid"',
       'payment_method' => 'required|in:transfer,cash',
       'products' => 'required',
     ];
