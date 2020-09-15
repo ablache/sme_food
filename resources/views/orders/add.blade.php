@@ -60,6 +60,7 @@
                     <th>Preferences</th>
                     <th>Unit Price</th>
                     <th>Total</th>
+                    <th>Remove</th>
                   </tr>
                 </thead>
                 <tbody id="products_table">
@@ -408,6 +409,15 @@ $(document).ready(function() {
       });
   })
 
+  $(document).on('click', 'span.remove-item', function(e) {
+    e.preventDefault();
+    var key = $(this).attr('rel');
+
+    selectedItems.splice(key, 1);
+
+    generateProducts(selectedItems, $('#products_table'));
+    calculate(selectedItems);
+  });
 
 });
 
@@ -456,10 +466,12 @@ function generateProducts(items, container) {
     html += '</td>' +
             '<td>' + toCurrency(v.item.price) + '</td>' +
             '<td>' + toCurrency(v.qty * v.item.price) + '</td>' +
+            '<td><span class="btn btn-danger remove-item" rel="' + k + '"><span class="fas fa-times"></span></span></td>' +
             '</tr>';
   });
   container.append(html);
 }
+
 
 function clearProductList() {
   $('#product_list').html('');
