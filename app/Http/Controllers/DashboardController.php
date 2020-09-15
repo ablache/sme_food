@@ -19,6 +19,7 @@ class DashboardController extends Controller
     $weekStart = $today->copy()->subWeek();
     $monthStart = $today->copy()->startOfMonth();
 
+    $counts['total_items'] = DB::table('order_product')->count();
     $counts['total_orders'] = Order::count();
     $counts['pending_orders'] = Order::where('delivery_status', '<>', 'delivered')->count();
     $counts['total_customers'] = Customer::count();

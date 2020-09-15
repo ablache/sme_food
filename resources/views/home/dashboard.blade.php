@@ -4,7 +4,17 @@
 
 <div class="fade-in">
   <div class="row">
-    <div class="col-sm-6 col-lg-3">
+    <div class="col-sm-6 col-lg-4">
+      <div class="card text-white bg-gradient-success pb-4">
+        <div class="card-body card-body pb-0 d-flex justify-content-between align-items-start">
+          <div>
+            <div class="text-value-lg">{{ $counts['total_items'] }}</div>
+            <div>Items Ordered</div>
+          </div>
+        </div>
+      </div> 
+    </div>
+    <div class="col-sm-6 col-lg-4">
       <div class="card text-white bg-gradient-primary pb-4">
         <div class="card-body card-body pb-0 d-flex justify-content-between align-items-start">
           <div>
@@ -14,7 +24,7 @@
         </div>
       </div> 
     </div>
-    <div class="col-sm-6 col-lg-3">
+    <div class="col-sm-6 col-lg-4">
       <div class="card text-white bg-gradient-info pb-4">
         <div class="card-body card-body pb-0 d-flex justify-content-between align-items-start">
           <div>
@@ -24,7 +34,7 @@
         </div>
       </div> 
     </div>
-    <div class="col-sm-6 col-lg-3">
+    <div class="col-sm-6 col-lg-6">
       <div class="card text-white bg-gradient-warning pb-4">
         <div class="card-body card-body pb-0 d-flex justify-content-between align-items-start">
           <div>
@@ -34,7 +44,7 @@
         </div>
       </div> 
     </div>
-    <div class="col-sm-6 col-lg-3">
+    <div class="col-sm-6 col-lg-6">
       <div class="card text-white bg-gradient-danger pb-4">
         <div class="card-body card-body pb-0 d-flex justify-content-between align-items-start">
           <div>
