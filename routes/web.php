@@ -76,7 +76,9 @@ Route::group(['middleware' => 'auth'], function() {
   Route::post('orders/payment-method/{id}', 'OrderController@paymentMethod')->name('orders.payment.method');
   Route::post('orders/payment-status/{id}', 'OrderController@paymentStatus')->name('orders.payment.status');
   Route::get('orders/{id}', 'OrderController@show')->name('orders.view');
-  
+
+  Route::get('reports/download/{type}', 'ReportController@download')->name('reports.download');
+  Route::post('reports/download/{type}', 'ReportController@export');
 
   Route::post('logout', 'LoginController@logout')->name('logout');
 });

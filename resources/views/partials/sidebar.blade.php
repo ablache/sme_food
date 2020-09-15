@@ -45,7 +45,7 @@
         <i class="fas fa-dollar-sign mr-2"></i> Expenses
       </a>
     </li>
-
+    
     <li class="c-sidebar-nav-title">CRM</li>
     <li class="c-sidebar-nav-item">
       <a class="c-sidebar-nav-link" href="{{ route('customers') }}">
@@ -53,6 +53,17 @@
       </a>
     </li>
 
+    <li class="c-sidebar-nav-title">Reports</li>
+    <li class="c-sidebar-nav-item">
+      <a class="c-sidebar-nav-link" href="{{ route('reports.download', ['type' => 'expense']) }}">
+        <i class="fas fa-chart-bar mr-2"></i> Expense Report
+      </a>
+    </li>
+    <li class="c-sidebar-nav-item">
+      <a class="c-sidebar-nav-link" href="{{ route('reports.download', ['type' => 'order']) }}">
+        <i class="fas fa-chart-line mr-2"></i> Order Report
+      </a>
+    </li>
   </ul>
 
 </div>
