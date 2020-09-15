@@ -8,14 +8,35 @@ use App\Order;
 use App\Product;
 use App\Http\Resources\OrderResource;
 use App\Http\Requests\ConfirmRequest;
+use \Carbon\Carbon;
 
 class OrderController extends Controller
 {
-  public function index() {
+  public function index(Request $request) {
     $title = 'Orders';
-    $orders = Order::orderBy('created_at', 'desc')->paginate(10);
+    $start = null;
+    $end = null;
+    $orders = collect();
 
-    return view('orders.manage', compact('title', 'orders'));
+    if($request->has('start')) {
+      $request->validate([
+        'start' => 'required|date',
+        'end' => 'required|date|after_or_equal:start',
+      ]);
+    }
+
+
+    if($request->has('start') && $request->has('end')) {
+      $start = Carbon::create($request->start);
+      $end = Carbon::create($request->end)->endOfDay();
+
+      $orders = Order::where('created_at', '>=', $start)->where('created_at', '<=', $end)->orderBy('created_at', 'desc')->paginate(10);
+    }
+    else {
+      $orders = Order::orderBy('created_at', 'desc')->paginate(10);
+    }
+
+    return view('orders.manage', compact('title', 'orders', 'start', 'end'));
   }
 
   public function show($id) {
