@@ -7,6 +7,7 @@ use App\Http\Requests\OrderRequest;
 use App\Order;
 use App\Product;
 use App\Http\Resources\OrderResource;
+use App\Http\Requests\ConfirmRequest;
 
 class OrderController extends Controller
 {
@@ -91,7 +92,7 @@ class OrderController extends Controller
     $products = $request->products;
 
     $order->products()->detach();
-    
+
     foreach($products as $p) {
       $product = Product::findOrFail($p['id']);
       $data['quantity'] = $p['qty'];
@@ -108,4 +109,11 @@ class OrderController extends Controller
     
     return response()->json(['success' => 'ok'], 200);
   } 
+
+  public function destroy(ConfirmRequest $request, $id) {
+    $order = Order::findOrFail($id);
+    $order->delete();
+
+    return redirect()->route('orders')->with(['success' => 'Order deleted successfully']);
+  }
 }

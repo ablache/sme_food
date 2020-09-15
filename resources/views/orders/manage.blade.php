@@ -66,8 +66,9 @@
               </td>
               <td>{{ $order->created_at->format('d M Y H:i') }}</td>
               <td width=150>
-                <a href="{{ route('orders.view', ['id' => $order->id]) }}" class="btn btn-outline-primary btn-sm"><span class="fas fa-search"></span></a>
-                <a href="{{ route('orders.edit', ['id' => $order->id]) }}" class="btn btn-outline-primary btn-sm"><span class="fas fa-pen"></span></a>
+                <a href="{{ route('orders.view', ['id' => $order->id]) }}" class="btn btn-outline-primary"><span class="fas fa-search"></span></a>
+                <a href="{{ route('orders.edit', ['id' => $order->id]) }}" class="btn btn-outline-primary"><span class="fas fa-pen"></span></a>
+                <a href="{{ route('orders.delete', ['id' => $order->id]) }}" class="del-conf btn btn-outline-primary"><span class="fas fa-trash"></span></a>
               </td>
             </tr>
           @endforeach
@@ -76,6 +77,7 @@
       {{ $orders->links() }}
     </div>
   </div>
+  @include('partials.delete-confirm-modal')
 </div>
     
 @endsection

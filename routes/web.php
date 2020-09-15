@@ -71,6 +71,7 @@ Route::group(['middleware' => 'auth'], function() {
   Route::post('orders/add', 'OrderController@store');
   Route::get('orders/edit/{id}', 'OrderController@edit')->name('orders.edit');
   Route::post('orders/edit/{id}', 'OrderController@update');
+  Route::post('orders/delete/{id}', 'OrderController@destroy')->name('orders.delete');
   Route::post('orders/delivery-status/{id}', 'OrderController@delivery')->name('orders.delivery');
   Route::post('orders/payment-method/{id}', 'OrderController@paymentMethod')->name('orders.payment.method');
   Route::post('orders/payment-status/{id}', 'OrderController@paymentStatus')->name('orders.payment.status');
