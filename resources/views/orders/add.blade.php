@@ -227,7 +227,7 @@ $(document).ready(function() {
 
     //PRODUCTS
     $.each(editData.products, function(k, v) {
-      var i = {id: v.id, item: v, qty: v.quantity, prefs: v.preferences}
+      var i = {id: v.id, item: v, qty: v.quantity, prefs: (v.preferences == null) ? Array() : v.preferences}
       selectedItems.push(i);
     });
     
