@@ -57,7 +57,7 @@
       <a href="{{ route('products.delete', ['id' => $product->id]) }}" class="del-conf btn btn-outline-primary">Delete <span class="fas fa-trash"></span></a>
     </div>
   </div>
-  @include('partials.delete-confirm-modal');
+  @include('partials.delete-confirm-modal')
 </div>
     
 @endsection

@@ -7,7 +7,7 @@
       </div>
       <div class="modal-body">
         <p id="modalMsg"></p>
-        {!! Form::open(['id' => 'confirm-form']) !!}
+        {!! Form::open(['id' => 'update-confirm-form']) !!}
         {!! Form::hidden('status', '', ['id' => 'confirm-status']) !!}
         {!! Form::close() !!}
       </div>

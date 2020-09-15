@@ -163,7 +163,18 @@
       </div>
     </div>
   </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <a href="{{ route('orders.edit', ['id' => $order->id]) }}" class="btn btn-outline-primary">Edit <span class="fas fa-pen"></span></a>
+          <a href="{{ route('orders.delete', ['id' => $order->id]) }}" class="del-conf btn btn-outline-primary">Delete <span class="fas fa-trash"></span></a>
+        </div>
+      </div>
+    </div>
+  </div>
   @include('partials.confirm-modal')
+  @include('partials.delete-confirm-modal')
 </div>
     
 @endsection
@@ -214,12 +225,12 @@ $(document).ready(function() {
 
 function postUpdate(url, status) {
   $('#confirmModal').modal('show');
-  $('#confirm-form').attr('action', url);
+  $('#update-confirm-form').attr('action', url);
   $('#confirm-status').val(status);
   $('#update-status').click(function(e) {
     e.preventDefault();
     
-    $('#confirm-form').submit();
+    $('#update-confirm-form').submit();
   });
 }
 
