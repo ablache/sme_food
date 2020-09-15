@@ -25,7 +25,6 @@ class OrderController extends Controller
       ]);
     }
 
-
     if($request->has('start') && $request->has('end')) {
       $start = Carbon::create($request->start);
       $end = Carbon::create($request->end)->endOfDay();

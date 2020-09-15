@@ -7,14 +7,34 @@ use App\Expense;
 use App\Http\Requests\ExpenseRequest;
 use App\Supplier;
 use App\Http\Requests\ConfirmRequest;
+use \Carbon\Carbon;
 
 class ExpenseController extends Controller
 {
-  public function index() {
+  public function index(Request $request) {
     $title = 'Expenses';
-    $expenses = Expense::orderBy('created_at', 'desc')->paginate(10);
+    $start = null;
+    $end = null;
+    $expenses = collect();
 
-    return view('expenses.manage', compact('title', 'expenses'));
+    if($request->has('start')) {
+      $request->validate([
+        'start' => 'required|date',
+        'end' => 'required|date|after_or_equal:start',
+      ]);
+    }
+
+    if($request->has('start') && $request->has('end')) {
+      $start = Carbon::create($request->start);
+      $end = Carbon::create($request->end)->endOfDay();
+
+      $expenses = Expense::where('created_at', '>=', $start)->where('created_at', '<=', $end)->orderBy('created_at', 'desc')->paginate(10);
+    }
+    else {
+      $expenses = Expense::orderBy('created_at', 'desc')->paginate(10);
+    }
+
+    return view('expenses.manage', compact('title', 'expenses', 'start', 'end'));
   }
 
   public function create() {
