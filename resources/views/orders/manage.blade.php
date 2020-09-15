@@ -65,8 +65,9 @@
                 MVR{{ number_format($subTotal - ($subTotal * ($order->discount / 100))) }}
               </td>
               <td>{{ $order->created_at->format('d M Y H:i') }}</td>
-              <td>
+              <td width=150>
                 <a href="{{ route('orders.view', ['id' => $order->id]) }}" class="btn btn-outline-primary btn-sm"><span class="fas fa-search"></span></a>
+                <a href="{{ route('orders.edit', ['id' => $order->id]) }}" class="btn btn-outline-primary btn-sm"><span class="fas fa-pen"></span></a>
               </td>
             </tr>
           @endforeach

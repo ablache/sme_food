@@ -21,7 +21,6 @@
                 <div class="form-group">
                   <label for="customer_srch">Customer</label>
                   {!! Form::text('customer_srch', null, ['class' => 'form-control', 'id' => 'customer_srch', 'placeholder' => 'Search Customers']) !!}
-                  {!! Form::hidden('customer_id', null, ['id' => 'customer_id']) !!}
                   <div class="list-group" id="customer_list"></div>
                   <div class="alert alert-primary" id="selected_customer" style="display: none;"></div>
                 </div>
@@ -203,8 +202,10 @@
 var token = "{{ csrf_token() }}";
 var custSrchUrl = "{{ route('customers.search') }}";
 var prodSrchUrl = "{{ route('products.search') }}";
-var prodAddUrl = "{{ route('orders.add') }}";
+var addUrl = "{{ route('orders.add') }}";
 var successUrl = "{{ route('orders') }}";
+var updateUrl = "{{ ($order != null) ? route('orders.edit', ['id' => $order->id]) : '' }}";
+var order = '{!! addslashes(json_encode($order)) !!}';
 
 $(document).ready(function() {
   clearCustomer();
@@ -215,6 +216,54 @@ $(document).ready(function() {
   var selectedDate = null;
   var discount;
   var data = {};
+
+  if(order != "null") {
+    console.log(JSON.parse(order));
+    var editData = JSON.parse(order);
+
+    //CUSTOMER
+    selectedCustomer = editData.customer.id;
+    showCustomer(editData.customer.name + ' (' + editData.customer.contact + ')');
+
+    //PRODUCTS
+    $.each(editData.products, function(k, v) {
+      var i = {id: v.id, item: v, qty: v.quantity, prefs: v.preferences}
+      selectedItems.push(i);
+    });
+    
+ 
+    clearProductList();
+    items = Array();
+    
+    generateProducts(selectedItems, $('#products_table'));
+    calculate(selectedItems);
+
+    //DELIVERY
+    $('#delivery_date').val(editData.deliver_date);
+    $('#hr').val(editData.deliver_hour);
+    $('#mn').val(editData.deliver_minute);
+    $('#del_status').val(editData.delivery_status);
+
+    //PAYMENT
+    discount = editData.discount;
+    $('#discount').val(discount);
+    calculate(selectedItems);
+    
+    $('.pay_method').each(function() {
+      if($(this).attr('rel') === editData.payment_method) {
+        $(this).prop('checked', true);
+      }
+    });
+
+    $('.pay_status').each(function() {
+      if($(this).attr('rel') === editData.payment_status) {
+        $(this).prop('checked', true);
+      }
+    });
+
+    //BUTTON TEXT
+    $('#submit').val('Update Order');
+  }
 
   $('#customer_srch').on('input', function() {
     var ckw = $(this).val();
@@ -333,7 +382,6 @@ $(document).ready(function() {
     $(this).empty();
     $(this).css('display', 'none');
     $('#customer_srch').val('');
-    $('#customer_id').val($(this).attr('rel'));
     selectedCustomer = $(this).attr('rel');
     $('#customer_list').html('');
     $('#customer_list').empty();
@@ -388,6 +436,11 @@ $(document).ready(function() {
       payment_status: payStatus
     };
 
+    var url = addUrl;
+
+    if(order != 'null') {
+      url = updateUrl;
+    }
 
     $.ajaxSetup({
         headers: {
@@ -397,7 +450,7 @@ $(document).ready(function() {
       $.ajax({
         type: 'POST',
         dataType: 'json',
-        url: prodAddUrl,
+        url: url,
         data: data,
         success: function(response) {
           location.replace(successUrl);

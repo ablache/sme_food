@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\OrderRequest;
 use App\Order;
 use App\Product;
+use App\Http\Resources\OrderResource;
 
 class OrderController extends Controller
 {
@@ -29,8 +30,9 @@ class OrderController extends Controller
 
   public function create() {
     $title = 'Place Order';
+    $order = null;
 
-    return view('orders.add', compact('title'));
+    return view('orders.add', compact('title', 'order'));
   }
 
   public function store(OrderRequest $request) {
@@ -75,4 +77,35 @@ class OrderController extends Controller
 
     return redirect()->route('orders.view', ['id' => $order->id])->with(['success' => 'Payment status updated successfully.']);
   }
+
+  public function edit($id) {
+    $title = 'Edit Order';
+    $orderRes = Order::findOrFail($id);
+    $order = OrderResource::make($orderRes);
+
+    return view('orders.add', compact('title', 'order'));
+  }
+
+  public function update(OrderRequest $request, $id) {
+    $order = Order::findOrFail($id);
+    $products = $request->products;
+
+    $order->products()->detach();
+    
+    foreach($products as $p) {
+      $product = Product::findOrFail($p['id']);
+      $data['quantity'] = $p['qty'];
+      if(array_key_exists('prefs', $p)) {
+        $data['preferences'] = json_encode($p['prefs']);
+      }
+
+      $order->products()->attach($product->id, $data);
+
+      unset($data);
+    }
+    
+    $order->update($request->all());
+    
+    return response()->json(['success' => 'ok'], 200);
+  } 
 }
