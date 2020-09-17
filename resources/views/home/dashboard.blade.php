@@ -64,14 +64,19 @@
         <div class="card-body">
 
           @foreach ($weeklyOrders as $wOrder)
-            <div class="progress-group mb-4">
-              <div class="progress-group-prepend"><span class="progress-group-text">{{ \Carbon\Carbon::create($wOrder->date)->format('l') }}</span></div>
+          
+            <div class="progress-group">
+              <div class="progress-group-header">
+                <div>{{ \Carbon\Carbon::create($wOrder->date)->format('l') }}</div>
+                <div class="mfs-auto font-weight-bold">{{ $wOrder->orders }} Orders</div>
+              </div>
               <div class="progress-group-bars">
                 <div class="progress progress-xs">
-                  <div class="progress-bar bg-gradient-info" role="progressbar" style="width: {{ (100 * $wOrder->orders) / $weeklyMax }}%" aria-valuenow="34" aria-valuemin="0" aria-valuemax="100"></div>
+                  <div class="progress-bar bg-gradient-warning" role="progressbar" style="width: {{ (100 * $wOrder->orders) / $weeklyMax }}%" aria-valuenow="43" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
               </div>
             </div>
+
           @endforeach
 
         </div>
