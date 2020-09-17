@@ -25,14 +25,14 @@ class DashboardController extends Controller
     $counts['total_customers'] = Customer::count();
     $counts['total_suppliers'] = Supplier::count();
 
-    $weeklyOrders = Order::where('created_at', '>', $weekStart)
+    $weeklyOrders = Order::where('deliver_at', '>', $weekStart)
                             ->where('delivery_status', 'delivered')
                             ->groupBy('date')
                             ->orderBy('date', 'DESC')
                             ->get(array(
                                 DB::raw('Date(deliver_at) as date'),
                                 DB::raw('COUNT(*) as "orders"')
-                            ));
+                            ));                     
 
     $weeklyMax = 0;
 
@@ -41,7 +41,7 @@ class DashboardController extends Controller
         $weeklyMax = $wo->orders;
       }
     }
-
+    
     $dailyExpenses = Expense::where('created_at', '>', $monthStart)
                                 ->where('created_at', '<=', $today)
                                 ->groupBy('date')
