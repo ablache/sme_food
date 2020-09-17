@@ -19,12 +19,13 @@ class ExportOrder implements FromCollection, WithHeadings
   public function headings(): array {
     return [
       'Date',
+      'Ordered By',
+      'Contact',
       'Qty',
       'Item',
       'Price',
       'Discount',
-      'Ordered By',
-      'Contact',
+      'Total',
     ];
   }
 
@@ -37,12 +38,13 @@ class ExportOrder implements FromCollection, WithHeadings
                     ->where('orders.deliver_at', '<=', $this->end)
                     ->select(
                       DB::raw('DATE_FORMAT(orders.deliver_at, "%d-%b-%Y") AS Date'),
+                      'customers.name AS "Ordered By"',
+                      'customers.contact AS Contact',
                       'order_product.quantity AS Qty',
                       'products.name AS Item',
                       'products.price AS Price',
                       'orders.discount AS Discount',
-                      'customers.name AS "Ordered By"',
-                      'customers.contact AS Contact'
+                      DB::raw('ROUND((order_product.quantity * products.price) - (order_product.quantity * products.price) * (orders.discount / 100), 2) AS Total')
                     )
                     ->orderBy('orders.deliver_at', 'ASC')
                     ->get();

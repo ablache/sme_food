@@ -218,7 +218,6 @@ $(document).ready(function() {
   var data = {};
 
   if(order != "null") {
-    console.log(JSON.parse(order));
     var editData = JSON.parse(order);
 
     //CUSTOMER
