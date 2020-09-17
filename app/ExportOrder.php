@@ -21,7 +21,10 @@ class ExportOrder implements FromCollection, WithHeadings
       'Date',
       'Qty',
       'Item',
-      'Price'
+      'Price',
+      'Discount',
+      'Ordered By',
+      'Contact',
     ];
   }
 
@@ -29,15 +32,19 @@ class ExportOrder implements FromCollection, WithHeadings
     $records = DB::table('orders')
                     ->join('order_product', 'order_product.order_id', '=', 'orders.id')
                     ->join('products', 'order_product.product_id', '=', 'products.id')
-                    ->where('orders.created_at', '>=', $this->start)
-                    ->where('orders.created_at', '<=', $this->end)
+                    ->join('customers', 'orders.customer_id', '=', 'customers.id')
+                    ->where('orders.deliver_at', '>=', $this->start)
+                    ->where('orders.deliver_at', '<=', $this->end)
                     ->select(
-                      DB::raw('DATE_FORMAT(orders.created_at, "%d-%b-%Y") AS Date'),
+                      DB::raw('DATE_FORMAT(orders.deliver_at, "%d-%b-%Y") AS Date'),
                       'order_product.quantity AS Qty',
                       'products.name AS Item',
-                      'products.price AS Price'
+                      'products.price AS Price',
+                      'orders.discount AS Discount',
+                      'customers.name AS "Ordered By"',
+                      'customers.contact AS Contact'
                     )
-                    ->orderBy('orders.created_at', 'ASC')
+                    ->orderBy('orders.deliver_at', 'ASC')
                     ->get();
 
     return $records;

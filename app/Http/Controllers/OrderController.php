@@ -29,10 +29,10 @@ class OrderController extends Controller
       $start = Carbon::create($request->start);
       $end = Carbon::create($request->end)->endOfDay();
 
-      $orders = Order::where('created_at', '>=', $start)->where('created_at', '<=', $end)->orderBy('created_at', 'desc')->paginate(10);
+      $orders = Order::where('deliver_at', '>=', $start)->where('deliver_at', '<=', $end)->orderBy('deliver_at', 'desc')->paginate(10);
     }
     else {
-      $orders = Order::orderBy('created_at', 'desc')->paginate(10);
+      $orders = Order::orderBy('deliver_at', 'desc')->paginate(10);
     }
 
     return view('orders.manage', compact('title', 'orders', 'start', 'end'));

@@ -30,7 +30,7 @@ class DashboardController extends Controller
                             ->groupBy('date')
                             ->orderBy('date', 'DESC')
                             ->get(array(
-                                DB::raw('Date(created_at) as date'),
+                                DB::raw('Date(deliver_at) as date'),
                                 DB::raw('COUNT(*) as "orders"')
                             ));
 
