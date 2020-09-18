@@ -78,7 +78,7 @@
             <div class="progress-group">
               <div class="progress-group-header">
                 <div>{{ \Carbon\Carbon::create($wOrder->date)->format('l') }}</div>
-                <div class="mfs-auto font-weight-bold">{{ $wOrder->orders }} Orders</div>
+                <div class="mfs-auto font-weight-bold">{{ $wOrder->orders }} Order{{ ($wOrder->orders > 1) ? 's' : '' }}</div>
               </div>
               <div class="progress-group-bars">
                 <div class="progress progress-xs">
