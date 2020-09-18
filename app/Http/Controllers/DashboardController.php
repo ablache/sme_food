@@ -19,11 +19,19 @@ class DashboardController extends Controller
     $weekStart = $today->copy()->subWeek();
     $monthStart = $today->copy()->startOfMonth();
 
+    $pendingOrders = Order::where('delivery_status', '<>', 'delivered')->get();
     $counts['total_items'] = DB::table('order_product')->get(DB::raw('SUM(quantity) as items'))->pluck('items')->toArray()[0];
     $counts['total_orders'] = Order::count();
-    $counts['pending_orders'] = Order::where('delivery_status', '<>', 'delivered')->count();
+    $counts['pending_orders'] = count($pendingOrders);
     $counts['total_customers'] = Customer::count();
     $counts['total_suppliers'] = Supplier::count();
+    $counts['pending_items'] = 0;
+
+    foreach($pendingOrders as $po) {
+      foreach($po->products as $item) {
+        $counts['pending_items'] += $item->pivot->quantity;
+      }
+    }
 
     $weeklyOrders = Order::where('deliver_at', '>', $weekStart)
                             ->where('delivery_status', 'delivered')
