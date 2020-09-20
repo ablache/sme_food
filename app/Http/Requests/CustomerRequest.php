@@ -28,6 +28,8 @@ class CustomerRequest extends FormRequest
       'name' => 'required',
       'contact' => 'required|numeric',
       'address' => 'required',
+      'lat' => 'numeric|nullable',
+      'lng' => 'numeric|nullable',
     ];
   }
 }
